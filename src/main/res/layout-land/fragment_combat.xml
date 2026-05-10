@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/space"
+    android:background="@drawable/bg_space"
     android:orientation="horizontal"
     android:padding="12dp">
 
@@ -26,30 +26,45 @@
             android:layout_height="wrap_content"
             android:background="@drawable/panel_background"
             android:baselineAligned="false"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="6dp">
 
             <TextView
                 android:id="@+id/playerHpText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:textColor="@color/text_primary"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/playerHpBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="70dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="6dp"
+                android:max="100"
+                android:progress="100"
+                android:progressDrawable="@drawable/hp_bar_progress" />
 
             <TextView
                 android:id="@+id/playerBlockText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:textColor="@color/text_primary"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <FrameLayout
                 android:id="@+id/energyPanel"
-                android:layout_width="132dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="6dp">
+                android:layout_width="124dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="8dp">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -78,24 +93,24 @@
 
                     <ImageView
                         android:id="@+id/energyPip1"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginStart="8dp"
                         android:contentDescription="Energy pip 1"
                         android:src="@drawable/bar_square_gloss_small_square" />
 
                     <ImageView
                         android:id="@+id/energyPip2"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginStart="4dp"
                         android:contentDescription="Energy pip 2"
                         android:src="@drawable/bar_square_gloss_small_square" />
 
                     <ImageView
                         android:id="@+id/energyPip3"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginStart="4dp"
                         android:contentDescription="Energy pip 3"
                         android:src="@drawable/bar_square_gloss_small_square" />
@@ -137,12 +152,12 @@
                 android:layout_height="52dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_background"
+                android:background="@drawable/ui_button_primary"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
                 android:text="Play Card"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -156,7 +171,7 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="End Turn"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>

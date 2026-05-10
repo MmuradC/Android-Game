@@ -24,6 +24,7 @@ public class CombatFragment extends Fragment {
     private FragmentCombatBinding binding;
     private CombatViewModel combatViewModel;
     private CardAdapter handAdapter;
+    private boolean terminalResultHandled;
 
     @Nullable
     @Override
@@ -56,19 +57,25 @@ public class CombatFragment extends Fragment {
         }
 
         binding.endTurnButton.setOnClickListener(v -> {
+            if (terminalResultHandled) {
+                return;
+            }
             CombatViewModel.PlayResult result = combatViewModel.endTurn();
-            handleResult(result);
             updateUi();
+            handleResult(result);
         });
 
         binding.playCardButton.setOnClickListener(v -> {
+            if (terminalResultHandled) {
+                return;
+            }
             if (combatViewModel.getSelectedCard() == null) {
                 Toast.makeText(requireContext(), "Select a card first.", Toast.LENGTH_SHORT).show();
                 return;
             }
             CombatViewModel.PlayResult result = combatViewModel.playSelectedCard();
-            handleResult(result);
             updateUi();
+            handleResult(result);
         });
 
         updateUi();
@@ -82,12 +89,16 @@ public class CombatFragment extends Fragment {
         }
 
         binding.playerHpText.setText("HP: " + player.getCurrentHp() + "/" + player.getMaxHp());
+        binding.playerHpBar.setMax(player.getMaxHp());
+        binding.playerHpBar.setProgress(player.getCurrentHp());
         binding.playerBlockText.setText("Block: " + player.getBlock());
         updateEnergyUI(player.getEnergy());
         binding.enemyCardFrame.enemyMajorNumber.setText(enemy.getMajorNumber());
         binding.enemyCardFrame.enemyName.setText(enemy.getDisplayName());
         binding.enemyCardFrame.enemyStats.setText("Enemy HP: " + enemy.getCurrentHp() + "/" + enemy.getMaxHp()
                 + "  Block: " + enemy.getBlock());
+        binding.enemyCardFrame.enemyHpBar.setMax(enemy.getMaxHp());
+        binding.enemyCardFrame.enemyHpBar.setProgress(enemy.getCurrentHp());
         binding.enemyCardFrame.enemyIntent.setText(enemy.getIntentText());
         binding.enemyCardFrame.enemyIcon.setImageResource(iconForEnemy(enemy));
         handAdapter.submitList(combatViewModel.getHand());
@@ -137,15 +148,36 @@ public class CombatFragment extends Fragment {
     private void handleResult(CombatViewModel.PlayResult result) {
         MainActivity activity = (MainActivity) requireActivity();
         if (result == CombatViewModel.PlayResult.NOT_ENOUGH_ENERGY) {
-            Toast.makeText(requireContext(), "Not enough energy.", Toast.LENGTH_SHORT).show();
+            showCombatMessage("Not enough energy.");
         } else if (result == CombatViewModel.PlayResult.VICTORY) {
-            Toast.makeText(requireContext(), "Victory! Choose a card.", Toast.LENGTH_SHORT).show();
-            activity.showReward();
+            if (terminalResultHandled) {
+                return;
+            }
+            terminalResultHandled = true;
+            setCombatButtonsEnabled(false);
+            showCombatMessage("Victory! Choose a card.");
+            binding.getRoot().postDelayed(activity::showReward, 1200);
         } else if (result == CombatViewModel.PlayResult.DEFEAT) {
-            Toast.makeText(requireContext(), "Run ended in the void.", Toast.LENGTH_SHORT).show();
-            activity.getRunViewModel().quitRun();
-            activity.showMenu();
+            if (terminalResultHandled) {
+                return;
+            }
+            terminalResultHandled = true;
+            setCombatButtonsEnabled(false);
+            showCombatMessage("Run ended in the void.");
+            binding.getRoot().postDelayed(activity::recordDefeat, 1200);
         }
+    }
+
+    private void setCombatButtonsEnabled(boolean enabled) {
+        binding.playCardButton.setEnabled(enabled);
+        binding.endTurnButton.setEnabled(enabled);
+        binding.playCardButton.setAlpha(enabled ? 1f : 0.45f);
+        binding.endTurnButton.setAlpha(enabled ? 1f : 0.45f);
+    }
+
+    private void showCombatMessage(String message) {
+        binding.selectedCardText.setText(message);
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override

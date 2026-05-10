@@ -1,6 +1,8 @@
 package com.mobil.bmt342.bmtcardgame.model;
 
 public class PlayerState {
+    private static final int MAX_ENERGY = 3;
+
     private final int maxHp;
     private int currentHp;
     private int block;
@@ -30,7 +32,7 @@ public class PlayerState {
 
     public void resetTurn() {
         block = 0;
-        energy = 3;
+        energy = MAX_ENERGY;
     }
 
     public void resetForNewRun() {
@@ -40,6 +42,10 @@ public class PlayerState {
 
     public void spendEnergy(int amount) {
         energy = Math.max(0, energy - amount);
+    }
+
+    public void gainEnergy(int amount) {
+        energy = Math.min(MAX_ENERGY, energy + Math.max(0, amount));
     }
 
     public void addBlock(int amount) {

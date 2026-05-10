@@ -43,13 +43,37 @@
         android:textColor="@color/text_secondary"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/enemyIntent"
+    <ProgressBar
+        android:id="@+id/enemyHpBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="220dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="8dp"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/hp_bar_progress" />
+
+    <LinearLayout
+        android:id="@+id/enemyIntentPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:textColor="@color/tarot_gold"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Enemy attack intent"
+            android:src="@drawable/ic_intent_attack" />
+
+        <TextView
+            android:id="@+id/enemyIntent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/tarot_gold"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </LinearLayout>

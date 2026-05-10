@@ -44,9 +44,9 @@
                     android:id="@+id/cardCost"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@drawable/button_outline"
+                    android:background="@drawable/bar_energy"
                     android:gravity="center"
-                    android:textColor="@color/tarot_gold"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
 

@@ -37,13 +37,36 @@ public class MenuFragment extends Fragment {
             preferences.markIntroSeen();
         }
 
+        MainActivity activity = (MainActivity) requireActivity();
+        updateContinueButton(activity);
+
         binding.startRunButton.setOnClickListener(v -> {
             preferences.setPlayerName(binding.playerNameInput.getText().toString());
             preferences.setSoundEnabled(binding.soundSwitch.isChecked());
-            ((MainActivity) requireActivity()).startRun();
+            Toast.makeText(requireContext(), preferences.getPlayerName()
+                    + " begins a new journey.", Toast.LENGTH_SHORT).show();
+            activity.startRun();
         });
 
-        binding.codexButton.setOnClickListener(v -> ((MainActivity) requireActivity()).showCodex());
+        binding.continueButton.setOnClickListener(v -> {
+            preferences.setSoundEnabled(binding.soundSwitch.isChecked());
+            Toast.makeText(requireContext(), preferences.getPlayerName()
+                    + " returns to the journey.", Toast.LENGTH_SHORT).show();
+            activity.continueGame();
+        });
+
+        binding.codexButton.setOnClickListener(v -> activity.showCodex());
+    }
+
+    private void updateContinueButton(MainActivity activity) {
+        boolean hasSave = activity.hasSavedGame();
+        binding.continueButton.setEnabled(hasSave);
+        binding.continueButton.setAlpha(hasSave ? 1f : 0.45f);
+        if (hasSave) {
+            binding.continueButton.setText("Continue as " + preferences.getPlayerName());
+        } else {
+            binding.continueButton.setText("No Saved Game");
+        }
     }
 
     @Override

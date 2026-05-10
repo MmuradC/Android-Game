@@ -111,18 +111,21 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
         private String labelForEffect(Card card) {
             if (Card.BLOCK.equals(card.getEffectType())) {
-                return "Defense";
+                return "Block " + card.getValue();
             }
             if (Card.HEAL.equals(card.getEffectType())) {
-                return "Healing";
+                return "Heal " + card.getValue();
             }
             if (Card.LIFESTEAL.equals(card.getEffectType())) {
-                return "Lifesteal";
+                return "Drain " + card.getValue();
             }
             if (Card.DRAW.equals(card.getEffectType())) {
-                return "Draw";
+                return "Draw " + card.getValue();
             }
-            return "Damage";
+            if (Card.ENERGY.equals(card.getEffectType())) {
+                return "Energy " + card.getValue();
+            }
+            return "Damage " + card.getValue();
         }
     }
 }

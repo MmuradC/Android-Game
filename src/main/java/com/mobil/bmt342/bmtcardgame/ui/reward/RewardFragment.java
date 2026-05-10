@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.mobil.bmt342.bmtcardgame.MainActivity;
 import com.mobil.bmt342.bmtcardgame.databinding.FragmentRewardBinding;
+import com.mobil.bmt342.bmtcardgame.model.Card;
 import com.mobil.bmt342.bmtcardgame.ui.codex.CardAdapter;
+
+import java.util.List;
 
 public class RewardFragment extends Fragment {
     private FragmentRewardBinding binding;
@@ -30,14 +33,26 @@ public class RewardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         MainActivity activity = (MainActivity) requireActivity();
         CardAdapter adapter = new CardAdapter(card -> {
-            activity.getRunViewModel().addCardToDeck(card);
-            activity.getRunViewModel().advanceEncounter();
+            activity.claimRewardAndContinue(card);
             Toast.makeText(requireContext(), card.getName() + " added to deck.", Toast.LENGTH_SHORT).show();
-            activity.showMap();
         });
         binding.rewardRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rewardRecycler.setAdapter(adapter);
-        adapter.submitList(activity.getCardRepository().getRewardChoices());
+        int encounterId = activity.getRunViewModel().getRunState().getCurrentEncounterId();
+        List<Card> choices = activity.getCardRepository().getAvailableRewardChoices(encounterId);
+        adapter.submitList(choices);
+
+        if (choices.isEmpty()) {
+            binding.rewardSubtitle.setText("No unclaimed cards remain for this encounter.");
+            binding.rewardRecycler.setVisibility(View.GONE);
+            binding.continueButton.setVisibility(View.VISIBLE);
+        } else {
+            binding.rewardSubtitle.setText("Pick 1 card. The other choices stay available if you replay this encounter.");
+            binding.rewardRecycler.setVisibility(View.VISIBLE);
+            binding.continueButton.setVisibility(View.GONE);
+        }
+
+        binding.continueButton.setOnClickListener(v -> activity.completeEncounterAndContinue());
     }
 
     @Override

@@ -6,6 +6,7 @@ public class Card {
     public static final String HEAL = "heal";
     public static final String DRAW = "draw";
     public static final String LIFESTEAL = "lifesteal";
+    public static final String ENERGY = "energy";
 
     private final int id;
     private final String name;

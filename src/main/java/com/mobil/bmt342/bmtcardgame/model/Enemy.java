@@ -9,8 +9,10 @@ public class Enemy {
     private final int maxHp;
     private int currentHp;
     private int block;
-    private final String intentType;
-    private final int intentValue;
+    private String intentType;
+    private int intentValue;
+    private String intentName;
+    private int turnIndex;
 
     public Enemy(int id, String name, int maxHp, String intentType, int intentValue) {
         this.id = id;
@@ -19,6 +21,8 @@ public class Enemy {
         this.currentHp = maxHp;
         this.intentType = intentType;
         this.intentValue = intentValue;
+        this.intentName = INTENT_BLOCK.equals(intentType) ? "Guard" : "Strike";
+        planIntent();
     }
 
     public int getId() {
@@ -71,6 +75,15 @@ public class Enemy {
         return intentValue;
     }
 
+    public String getIntentName() {
+        return intentName;
+    }
+
+    public void advanceIntent() {
+        turnIndex++;
+        planIntent();
+    }
+
     public void takeDamage(int amount) {
         int remaining = Math.max(0, amount);
         int blocked = Math.min(block, remaining);
@@ -81,8 +94,104 @@ public class Enemy {
 
     public String getIntentText() {
         if (INTENT_BLOCK.equals(intentType)) {
-            return "Intent: Guard, gain " + intentValue + " block";
+            return "Intent: " + intentName + " - gain " + intentValue + " block";
         }
-        return "Intent: Strike, attack for " + intentValue;
+        return "Intent: " + intentName + " - attack for " + intentValue;
+    }
+
+    private void planIntent() {
+        switch (id) {
+            case 2:
+                planTowerIntent();
+                break;
+            case 3:
+                planDeathIntent();
+                break;
+            case 4:
+                planDevilIntent();
+                break;
+            case 5:
+                planHermitIntent();
+                break;
+            case 6:
+                planWorldIntent();
+                break;
+            case 1:
+            default:
+                planMagicianIntent();
+                break;
+        }
+    }
+
+    private void setIntent(String name, String type, int value) {
+        intentName = name;
+        intentType = type;
+        intentValue = value;
+    }
+
+    private void planMagicianIntent() {
+        int step = turnIndex % 3;
+        if (step == 0) {
+            setIntent("Spark", INTENT_ATTACK, 6);
+        } else if (step == 1) {
+            setIntent("Sleight", INTENT_BLOCK, 6);
+        } else {
+            setIntent("Flare", INTENT_ATTACK, 9);
+        }
+    }
+
+    private void planTowerIntent() {
+        int step = turnIndex % 3;
+        if (step == 0) {
+            setIntent("Crack", INTENT_ATTACK, 7);
+        } else if (step == 1) {
+            setIntent("Brace", INTENT_BLOCK, 8);
+        } else {
+            setIntent("Collapse", INTENT_ATTACK, 14);
+        }
+    }
+
+    private void planDeathIntent() {
+        int step = turnIndex % 3;
+        if (step == 0) {
+            setIntent("Scythe", INTENT_ATTACK, 8);
+        } else if (step == 1) {
+            setIntent("Stillness", INTENT_BLOCK, 7);
+        } else {
+            setIntent("Reap", INTENT_ATTACK, 12);
+        }
+    }
+
+    private void planDevilIntent() {
+        int step = turnIndex % 2;
+        if (step == 0) {
+            setIntent("Tempt", INTENT_ATTACK, 9);
+        } else {
+            setIntent("Chains", INTENT_BLOCK, 10);
+        }
+    }
+
+    private void planHermitIntent() {
+        int step = turnIndex % 3;
+        if (step == 0) {
+            setIntent("Lantern", INTENT_BLOCK, 12);
+        } else if (step == 1) {
+            setIntent("Staff", INTENT_ATTACK, 7);
+        } else {
+            setIntent("Hidden Path", INTENT_BLOCK, 8);
+        }
+    }
+
+    private void planWorldIntent() {
+        int step = turnIndex % 4;
+        if (step == 0) {
+            setIntent("Orbit", INTENT_BLOCK, 10);
+        } else if (step == 1) {
+            setIntent("Turning", INTENT_ATTACK, 10);
+        } else if (step == 2) {
+            setIntent("Completion", INTENT_ATTACK, 15);
+        } else {
+            setIntent("Balance", INTENT_BLOCK, 12);
+        }
     }
 }

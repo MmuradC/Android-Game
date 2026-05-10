@@ -9,38 +9,36 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose One Minor Arcana"
+        android:text="Deck"
         android:textColor="@color/text_primary"
-        android:textSize="26sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/rewardSubtitle"
+        android:id="@+id/deckSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Unlocked cards stay with this game."
         android:textColor="@color/text_secondary"
         android:textSize="15sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rewardRecycler"
+        android:id="@+id/deckRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:layout_weight="1" />
 
     <TextView
-        android:id="@+id/continueButton"
+        android:id="@+id/backButton"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/ui_button_primary"
+        android:background="@drawable/ui_button_secondary"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:text="Continue"
+        android:text="Back to Map"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:visibility="gone" />
+        android:textStyle="bold" />
 </LinearLayout>

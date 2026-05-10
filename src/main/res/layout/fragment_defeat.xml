@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_space"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Defeat"
+        android:textColor="@color/danger"
+        android:textSize="38sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/defeatSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:textColor="@color/text_secondary"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/returnMapButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ui_button_primary"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Return to Map"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/menuButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ui_button_secondary"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Main Menu"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+</LinearLayout>

@@ -95,13 +95,18 @@ public class CombatViewModel extends ViewModel {
             playerState.takeDamage(enemy.getIntentValue());
         }
 
+        if (playerState.getCurrentHp() <= 0) {
+            return PlayResult.DEFEAT;
+        }
+
         discardPile.addAll(hand);
         hand.clear();
         selectedCard = null;
         playerState.resetTurn();
+        enemy.advanceIntent();
         drawHand();
 
-        return playerState.getCurrentHp() <= 0 ? PlayResult.DEFEAT : PlayResult.PLAYED;
+        return PlayResult.PLAYED;
     }
 
     private void applyCard(Card card) {
@@ -114,6 +119,8 @@ public class CombatViewModel extends ViewModel {
             playerState.heal(card.getValue());
         } else if (Card.DRAW.equals(card.getEffectType())) {
             drawCards(card.getValue());
+        } else if (Card.ENERGY.equals(card.getEffectType())) {
+            playerState.gainEnergy(card.getValue());
         } else {
             enemy.takeDamage(card.getValue());
         }

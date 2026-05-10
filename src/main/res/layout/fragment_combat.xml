@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/space"
+    android:background="@drawable/bg_space"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -24,6 +24,16 @@
             android:textColor="@color/text_primary"
             android:textSize="15sp"
             android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/playerHpBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="80dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="8dp"
+            android:max="100"
+            android:progress="100"
+            android:progressDrawable="@drawable/hp_bar_progress" />
 
         <TextView
             android:id="@+id/playerBlockText"
@@ -134,12 +144,12 @@
             android:layout_height="52dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/button_background"
+            android:background="@drawable/ui_button_primary"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="Play Card"
-            android:textColor="@color/text_primary"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <TextView
@@ -153,7 +163,7 @@
             android:focusable="true"
             android:gravity="center"
             android:text="End Turn"
-            android:textColor="@color/text_primary"
+            android:textColor="@color/black"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

@@ -13,6 +13,8 @@ import com.mobil.bmt342.bmtcardgame.data.repository.CardRepository;
 import com.mobil.bmt342.bmtcardgame.databinding.ActivityMainBinding;
 import com.mobil.bmt342.bmtcardgame.ui.codex.CodexFragment;
 import com.mobil.bmt342.bmtcardgame.ui.combat.CombatFragment;
+import com.mobil.bmt342.bmtcardgame.ui.deck.DeckFragment;
+import com.mobil.bmt342.bmtcardgame.ui.defeat.DefeatFragment;
 import com.mobil.bmt342.bmtcardgame.ui.map.MapFragment;
 import com.mobil.bmt342.bmtcardgame.ui.menu.MenuFragment;
 import com.mobil.bmt342.bmtcardgame.ui.reward.RewardFragment;
@@ -49,9 +51,66 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startRun() {
-        runViewModel.startRun(cardRepository.getStarterDeck());
+        cardRepository.startNewGame();
+        runViewModel.startRun(cardRepository.getCampaignDeck());
         NotificationHelper.showRunStarted(this);
         showMap();
+    }
+
+    public boolean hasSavedGame() {
+        return cardRepository.hasSavedGame();
+    }
+
+    public void continueGame() {
+        if (!cardRepository.hasSavedGame()) {
+            startRun();
+            return;
+        }
+        runViewModel.loadCampaign(
+                cardRepository.getCampaignDeck(),
+                cardRepository.getRunCounter(),
+                cardRepository.getFurthestUnlockedEncounter(),
+                cardRepository.getDiscardTokens()
+        );
+        showMap();
+    }
+
+    public void selectEncounterAndStart(int encounterId) {
+        runViewModel.selectEncounter(encounterId);
+        showCombat();
+    }
+
+    public void claimRewardAndContinue(com.mobil.bmt342.bmtcardgame.model.Card card) {
+        int encounterId = runViewModel.getRunState().getCurrentEncounterId();
+        cardRepository.unlockRewardCard(encounterId, card.getId());
+        runViewModel.addCardToDeck(card);
+        completeEncounterAndContinue();
+    }
+
+    public void completeEncounterAndContinue() {
+        int encounterId = runViewModel.getRunState().getCurrentEncounterId();
+        boolean unlocksNewEncounter = encounterId < 6
+                && encounterId + 1 > cardRepository.getFurthestUnlockedEncounter();
+        if (unlocksNewEncounter) {
+            cardRepository.unlockEncounter(encounterId + 1);
+            cardRepository.addDiscardToken();
+        }
+        runViewModel.advanceEncounter();
+        showMap();
+    }
+
+    public boolean removeCardFromDeck(com.mobil.bmt342.bmtcardgame.model.Card card) {
+        boolean removed = cardRepository.removeCardFromDeck(card.getId());
+        if (removed) {
+            runViewModel.removeCardFromDeck(card.getId());
+        }
+        return removed;
+    }
+
+    public void recordDefeat() {
+        cardRepository.incrementRunCounter();
+        runViewModel.recordDefeat();
+        showDefeat();
     }
 
     public void showMenu() {
@@ -68,6 +127,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void showReward() {
         navigate(new RewardFragment(), true);
+    }
+
+    public void showDefeat() {
+        navigate(new DefeatFragment(), true);
+    }
+
+    public void showDeck() {
+        navigate(new DeckFragment(), true);
     }
 
     public void showCodex() {

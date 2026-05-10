@@ -18,12 +18,29 @@ public class RunViewModel extends ViewModel {
         runState.startRun(starterDeck);
     }
 
+    public void loadCampaign(List<Card> savedDeck, int runCounter, int furthestUnlockedEncounterId,
+                             int discardTokens) {
+        runState.loadCampaign(savedDeck, runCounter, furthestUnlockedEncounterId, discardTokens);
+    }
+
     public void addCardToDeck(Card card) {
         runState.addCard(card);
     }
 
+    public void removeCardFromDeck(int cardId) {
+        runState.removeCard(cardId);
+    }
+
+    public void selectEncounter(int encounterId) {
+        runState.selectEncounter(encounterId);
+    }
+
     public void advanceEncounter() {
         runState.advanceEncounter();
+    }
+
+    public void recordDefeat() {
+        runState.recordDefeat();
     }
 
     public void quitRun() {
