@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.fools.game.app-mergeDebugResources-42:/layout/fragment_reward.xml",
+        "source": "com.fools.game.app-main-45:/layout/fragment_reward.xml"
+    },
+    {
+        "merged": "com.fools.game.app-mergeDebugResources-42:/layout/fragment_combat.xml",
+        "source": "com.fools.game.app-main-45:/layout/fragment_combat.xml"
+    },
+    {
+        "merged": "com.fools.game.app-mergeDebugResources-42:/layout/fragment_map.xml",
+        "source": "com.fools.game.app-main-45:/layout/fragment_map.xml"
+    },
+    {
+        "merged": "com.fools.game.app-mergeDebugResources-42:/layout/item_map_node.xml",
+        "source": "com.fools.game.app-main-45:/layout/item_map_node.xml"
+    },
+    {
+        "merged": "com.fools.game.app-mergeDebugResources-42:/layout/activity_main.xml",
+        "source": "com.fools.game.app-main-45:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.fools.game.app-mergeDebugResources-42:/layout/item_card.xml",
+        "source": "com.fools.game.app-main-45:/layout/item_card.xml"
+    }
+]

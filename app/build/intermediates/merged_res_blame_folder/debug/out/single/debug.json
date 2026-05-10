@@ -1,0 +1,90 @@
+[
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_ic_tower.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/ic_tower.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_bg_space.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/bg_space.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_ic_intent_attack.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/ic_intent_attack.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/layout_item_map_node.xml.flat",
+        "source": "com.fools.game.app-main-45:/layout/item_map_node.xml"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/layout_fragment_reward.xml.flat",
+        "source": "com.fools.game.app-main-45:/layout/fragment_reward.xml"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.fools.game.app-main-45:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_ic_devil.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/ic_devil.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/layout_fragment_map.xml.flat",
+        "source": "com.fools.game.app-main-45:/layout/fragment_map.xml"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/layout_activity_main.xml.flat",
+        "source": "com.fools.game.app-main-45:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_ic_hermit.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/ic_hermit.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.fools.game.app-main-45:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/layout_fragment_combat.xml.flat",
+        "source": "com.fools.game.app-main-45:/layout/fragment_combat.xml"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/layout_item_card.xml.flat",
+        "source": "com.fools.game.app-main-45:/layout/item_card.xml"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_bar_hp.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/bar_hp.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_ic_world.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/ic_world.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_ic_magician.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/ic_magician.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.fools.game.app-main-45:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_bar_energy.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/bar_energy.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/navigation_nav_graph.xml.flat",
+        "source": "com.fools.game.app-main-45:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_bg_card_space.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/bg_card_space.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/drawable_ic_death.png.flat",
+        "source": "com.fools.game.app-main-45:/drawable/ic_death.png"
+    },
+    {
+        "merged": "com.fools.game.app-merged_res-43:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.fools.game.app-main-45:/mipmap-xxhdpi/ic_launcher.png"
+    }
+]
