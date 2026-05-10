@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.fools.game'
+    namespace 'com.mobil.bmt342.bmtcardgame'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.fools.game"
+        applicationId "com.mobil.bmt342.bmtcardgame"
         minSdk 24
         targetSdk 34
         versionCode 1

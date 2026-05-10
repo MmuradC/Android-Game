@@ -1,51 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_space">
+    android:background="@color/space"
+    android:orientation="vertical"
+    android:padding="20dp">
 
     <TextView
-        android:id="@+id/map_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="The Fool's Journey"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="Astral Map"
+        android:textColor="@color/text_primary"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/map_subtitle"
-        android:layout_width="wrap_content"
+        android:id="@+id/mapSubtitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Select your next encounter"
-        android:textColor="#B0B0C0"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/map_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="The Fool's path continues through the Major Arcana."
+        android:textColor="@color/text_secondary"
+        android:textSize="15sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/map_recycler_view"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/combatNodeButton"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/panel_background"
+        android:text="I - The Magician"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp" />
+
+    <Space
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
-        android:clipToPadding="false"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/map_subtitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_map_node" />
+        android:layout_weight="1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/codexButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_outline"
+        android:text="Open Codex"
+        android:textColor="@color/text_primary" />
+
+    <Button
+        android:id="@+id/quitRunButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_outline"
+        android:text="Quit Run"
+        android:textColor="@color/danger" />
+</LinearLayout>
